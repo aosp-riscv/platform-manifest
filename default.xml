@@ -8,8 +8,14 @@
 -->
 
   <remote  name="aosp"
-           fetch=".."
+           fetch="https://android.googlesource.com/"
            review="https://android-review.googlesource.com/" />
+  <remote  name="aosp-riscv"
+           fetch="https://github.com/aosp-riscv/"
+           review="" />
+  <remote  name="riscv-android-src"
+           fetch="https://github.com/riscv-android-src/"
+           review="" />
   <default revision="master"
            remote="aosp"
            sync-j="4" />
@@ -17,12 +23,16 @@
   <superproject name="platform/superproject" remote="aosp" revision="llvm-toolchain"/>
   <contactinfo bugurl="go/repo-bug" />
 
+  <!-- RISC-V changed -->
+  <project path="bionic" name="platform-bionic" remote="riscv-android-src" revision="riscv64-android-12.0.0_dev"/>
+  <project path="toolchain/llvm_android" name="toolchain-llvm-android" remote="aosp-riscv" revision="riscv64-llvm-toolchain-dev" />
+  <!-- RISC-V added -->
+  <project path="toolchain/prebuilts/ndk/r23" name="toolchain-prebuilts-ndk-r23" remote="riscv-android-src" revision="riscv-llvm-r416183_dev" />
+
   <!-- Core LLVM toolchain components -->
-  <project path="bionic" name="platform/bionic" />
   <project path="toolchain/binutils" name="toolchain/binutils" />
   <project path="toolchain/llvm-project" name="toolchain/llvm-project"
            revision="master-legacy" />
-  <project path="toolchain/llvm_android" name="toolchain/llvm_android" />
   <project path="toolchain/common" name="toolchain/common" />
 
   <!-- Android/ChromeOS shared toolchain-utils -->
